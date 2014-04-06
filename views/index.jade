@@ -1,0 +1,18 @@
+!!!5
+html
+    head
+        title Plap
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width', initial-scale="1.0")
+        meta(name='description', content='')
+        meta(name='author', content='arpinum')
+    body
+        div#echange
+        script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js")
+        script
+            var socket = io.connect('http://localhost:5000');
+            socket.on('ping', function (data) {
+              $("#echange").append($("<div>Ping received : "+ data.msg +"</div>"))
+              socket.emit('pong', { msg: new Date() });
+            });
